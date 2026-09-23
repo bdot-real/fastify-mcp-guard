@@ -23,10 +23,15 @@ npm test
 
 | Script | What it does |
 | --- | --- |
-| `npm run lint` | Lints with [neostandard](https://github.com/neostandard/neostandard) |
-| `npm test` | Runs lint, type checks and the test suite (`node:test` + `c8`) |
+| `npm run lint` | Lints with [neostandard](https://github.com/neostandard/neostandard) (`lint:fix` to autofix) |
+| `npm run typecheck` | Type checks sources and tests with `tsc` |
+| `npm run unit` | Runs the test suite (`node:test` + `c8`) with a 100% coverage gate |
+| `npm test` | Runs lint, typecheck and unit |
+| `npm run check:exports` | Validates the published `exports` map with attw and publint |
 | `npm run build` | Builds ESM + CJS output with `tsup` |
 | `npm run bench` | Runs the `autocannon` benchmark suite |
+
+Tests are written in TypeScript and run directly by Node's built-in type stripping, so there is no compile step. Source files therefore use erasable syntax only: no `enum`, `namespace` or constructor parameter properties. Relative imports keep their `.ts` extension.
 
 ## Pull request checklist
 
