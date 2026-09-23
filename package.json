@@ -1,0 +1,69 @@
+{
+  "name": "fastify-mcp-guard",
+  "version": "0.0.0",
+  "description": "Fastify plugin for MCP tool-call authorization: allow, deny, or hold for human approval, with every decision audited.",
+  "keywords": [
+    "fastify",
+    "fastify-plugin",
+    "mcp",
+    "model-context-protocol",
+    "authorization",
+    "cedar",
+    "policy",
+    "ai-agents"
+  ],
+  "license": "MIT",
+  "author": "bdot-real",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bdot-real/fastify-mcp-guard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bdot-real/fastify-mcp-guard/issues"
+  },
+  "homepage": "https://github.com/bdot-real/fastify-mcp-guard#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "check:exports": "attw --pack . && publint",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "fastify-plugin": "^6.0.0"
+  },
+  "peerDependencies": {
+    "fastify": "^5.0.0"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@types/node": "^22.20.4",
+    "fastify": "^5.12.5",
+    "publint": "^0.3.24",
+    "tsup": "^8.5.1",
+    "typescript": "6.0.3"
+  }
+}
