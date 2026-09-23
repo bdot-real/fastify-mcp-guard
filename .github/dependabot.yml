@@ -1,0 +1,34 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    commit-message:
+      # Runtime dependency bumps ship as a patch release; dev tooling does not.
+      prefix: fix
+      prefix-development: chore
+      include: scope
+    groups:
+      dev-dependencies:
+        dependency-type: development
+        update-types: [minor, patch]
+    ignore:
+      # TypeScript 7 drops the compiler API that tsup's declaration build needs.
+      - dependency-name: typescript
+        versions: ['>=7']
+      # neostandard does not support ESLint 10 yet.
+      - dependency-name: eslint
+        versions: ['>=10']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+      include: scope
+    groups:
+      actions:
+        patterns: ['*']

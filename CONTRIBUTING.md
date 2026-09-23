@@ -46,6 +46,15 @@ Tests are written in TypeScript and run directly by Node's built-in type strippi
 
 We use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `chore:`, …). Release notes and version bumps are generated from them by release-please, so the prefix matters.
 
+## Releases
+
+Releases are automated with [release-please](https://github.com/googleapis/release-please):
+
+1. Every merge to `main` updates an open **release PR** with the next version (from the Conventional Commit prefixes) and the generated `CHANGELOG.md`.
+2. Merging the release PR tags the version, creates a GitHub release and publishes to npm from CI with [provenance](https://docs.npmjs.com/generating-provenance-statements).
+
+Before 1.0, `feat:` bumps the minor version and `fix:` bumps the patch version. Nobody publishes from a laptop.
+
 ## Architecture decisions
 
 Architecture Decision Records live in `docs/adr/`, numbered sequentially (`001-hook-vs-proxy.md`, …). Propose a new ADR in its own pull request when a change picks between real alternatives or reverses an earlier decision.
