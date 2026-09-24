@@ -67,7 +67,7 @@ flowchart LR
 2. **The guarded route is the only way to reach the MCP server's tools** (ADR-001). Other routes, ports or transports that reach the same handlers are not protected.
 3. **TLS is terminated by Fastify or a trusted proxy.** Transport security is out of scope.
 4. **Policy files and plugin options come from the deployment,** never from requests.
-5. **The MCP transport hands tool handlers the same body Fastify parsed** (`request.body`), not a second parse of the raw stream. Confirmed per transport in #9.
+5. **The MCP transport hands tool handlers the same body Fastify parsed** (`request.body`), not a second parse of the raw stream. Confirmed for six Fastify transports in the [landscape survey](./research/2026-09-landscape.md) (#9).
 
 ## STRIDE analysis
 
@@ -93,6 +93,7 @@ Legend: **✅ requirement** (delivered by the linked issue) · **📄 documented
 | T5 | Tool name tricks (case, Unicode lookalikes, extra whitespace) match a permissive rule or miss a deny rule | ✅ Exact, case-sensitive matching against registered tool names. **Unknown tools are denied by default** (ADR-003, #23). |
 | T6 | Approval records are edited directly in Redis | 📄 Use Redis ACLs and TLS, and give the store its own key prefix and user. ✅ The replay hash check detects a changed body (#40). |
 | T7 | Policy files are changed at runtime | ✅ Policies are compiled once at boot, with no runtime reload endpoint (#20). 📄 Policy files go through code review and CI (TB6). |
+| T8 | **Header/body mismatch:** the `Mcp-Method` / `Mcp-Name` headers (MCP 2026-07-28) name a harmless tool while the body calls another | ✅ Authorize from the body only, never from headers. Only some transports cross-check the two (ADR-007, #10). |
 
 ### Repudiation
 
@@ -146,6 +147,5 @@ Legend: **✅ requirement** (delivered by the linked issue) · **📄 documented
 
 - [ ] E8: behaviour for unrecognized JSON-RPC methods
 - [ ] E1: whether a startup check for unguarded routes is feasible
-- [ ] Confirm assumption 5 for each supported transport (#9)
 - [ ] Decide how `require_approval` is surfaced to clients (#17) and review its disclosure (I3)
 - [ ] Mark each ✅ as verified, with the test that proves it
