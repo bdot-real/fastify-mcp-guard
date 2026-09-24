@@ -32,6 +32,9 @@ Please include:
 
 ## Scope
 
+The [threat model](./docs/threat-model.md) describes the assets, trust boundaries and mitigations in detail.
+
+
 In scope: authorization bypass in `tools/call` interception or `tools/list` filtering, policy evaluation errors that fail open, approval flow flaws (argument swapping, replay, double approval, separation-of-duties bypass), and sensitive data leaking into audit logs or spans despite redaction settings.
 
 Out of scope: authentication (delegated to `@fastify/jwt` or an upstream gateway), vulnerabilities in your own policies, and issues in third-party dependencies that are already publicly reported upstream.
