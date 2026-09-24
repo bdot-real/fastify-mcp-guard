@@ -47,7 +47,7 @@ flowchart LR
   AP -- "TB2: HTTPS, approver token" --> AE --> S
   AE -- replay via inject --> T
   G -- "TB3: HMAC-signed" --> WR
-  S <-. "TB4: network (Redis)" .-> G
+  G -. "TB4: network (Redis)" .-> S
   L -. "TB5" .-> SI
   PF -. "TB6: boot" .-> P
 ```
