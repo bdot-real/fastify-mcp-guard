@@ -18,6 +18,9 @@ updates:
       # TypeScript 7 drops the compiler API that tsup's declaration build needs.
       - dependency-name: typescript
         versions: ['>=7']
+      # Types track the oldest supported Node line (engines: >=22).
+      - dependency-name: '@types/node'
+        versions: ['>=23']
       # neostandard does not support ESLint 10 yet.
       - dependency-name: eslint
         versions: ['>=10']
