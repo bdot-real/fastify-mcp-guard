@@ -1,6 +1,6 @@
 {
   "name": "fastify-mcp-guard",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Fastify plugin for MCP tool-call authorization: allow, deny, or hold for human approval, with every decision audited.",
   "keywords": [
     "fastify",
