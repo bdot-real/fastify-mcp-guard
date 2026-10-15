@@ -61,7 +61,7 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "fastify-plugin": "^6.0.0"
+    "fastify-plugin": "^6.0.1"
   },
   "peerDependencies": {
     "fastify": "^5.0.0"
